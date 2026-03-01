@@ -35,9 +35,6 @@ If you prefer to ship a local demo file:
 ### 3) Incident Detail
 ![Incident Detail](docs/screenshots/incident-detail.png)
 
-### 4) Export / Share
-![Export Share](docs/screenshots/export-share.png)
-
 ## Problem Statement
 Ops, Support, and Product teams often triage incidents from fragmented, noisy inputs (logs, screenshots, chat messages, tickets). This leads to:
 - Slow time-to-first-update
