@@ -1,65 +1,163 @@
-import Image from "next/image";
+﻿import Link from "next/link";
+
+const features = [
+  {
+    title: "Multimodal intake (OCR + ASR)",
+    text: "Accept screenshots, pasted logs, and audio snippets in one intake flow.",
+  },
+  {
+    title: "Severity + routing classification",
+    text: "Standardize triage with consistent severity labels and team ownership.",
+  },
+  {
+    title: "Entity extraction (CVE, error codes, regions)",
+    text: "Structure noisy incident context into actionable entities automatically.",
+  },
+  {
+    title: "Tool enrichment (NVD, GitHub, status pages)",
+    text: "Pull external evidence sources to support investigation decisions.",
+  },
+  {
+    title: "Similar incidents (RAG via pgvector)",
+    text: "Retrieve comparable past incidents to accelerate diagnosis and response.",
+  },
+  {
+    title: "Export pack (Markdown + JSON)",
+    text: "Share incident artifacts with teams and tools in portable formats.",
+  },
+];
+
+const valueBullets = [
+  "Faster time-to-first-update",
+  "Consistent severity + routing",
+  "Evidence-backed next actions",
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="landing-page">
+      <header className="nav">
+        <div className="container navInner">
+          <Link href="/" className="navBrand">
+            OpsSignal AI
+          </Link>
+
+          <div className="navActions">
+            <nav className="navLinks">
+              <a href="#product">Product</a>
+              <a href="#how">How it works</a>
+              <Link href="/architecture">Architecture</Link>
+              <Link href="/demo">Guided Demo</Link>
+              <Link href="/incidents">Demo</Link>
+            </nav>
+            <Link className="btn btn-primary navCta" href="/incidents">
+              Try Demo
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section className="hero container">
+          <p className="hero-eyebrow">OpsSignal AI</p>
+          <h1>Multimodal Incident Triage + Comms Copilot</h1>
+          <p className="hero-sub">
+            Turn screenshots, logs, and audio into a structured incident record, clearer updates, and
+            evidence-backed investigation steps in minutes.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+          <div className="hero-cta">
+            <Link className="btn btn-primary" href="/incidents">
+              Try Demo
+            </Link>
+            <Link className="btn btn-secondary" href="/incidents/new">
+              Create Incident
+            </Link>
+          </div>
+
+          <ul className="hero-values">
+            {valueBullets.map((item) => (
+              <li key={item}>
+                <span className="value-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" role="img" focusable="false">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M8.5 12.5l2.3 2.3 4.7-4.8" />
+                  </svg>
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="container social-proof">
+          <span className="chip">Built for Ops, IT, Support, Product</span>
+          <span className="chip">HF-hosted Mistral models + pgvector</span>
+        </section>
+
+        <section id="product" className="container section">
+          <h2>Product features</h2>
+          <p className="section-sub">Everything needed to go from noisy input to coordinated response.</p>
+          <div className="grid feature-grid">
+            {features.map((feature) => (
+              <article key={feature.title} className="feature-card">
+                <h3>{feature.title}</h3>
+                <p>{feature.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="how" className="container section">
+          <h2>How it works</h2>
+          <div className="how-flow">
+            <div className="how-step">Ingest (logs/screenshot/audio)</div>
+            <div className="how-arrow" aria-hidden="true">
+              -&gt;
+            </div>
+            <div className="how-step">Triage (classify + extract)</div>
+            <div className="how-arrow" aria-hidden="true">
+              -&gt;
+            </div>
+            <div className="how-step">Enrich (tools)</div>
+            <div className="how-arrow" aria-hidden="true">
+              -&gt;
+            </div>
+            <div className="how-step">Communicate + Learn (updates + RAG)</div>
+          </div>
+        </section>
+
+        <section className="container section">
+          <h2>Architecture</h2>
+          <p className="section-sub">Lean, composable flow with model + evidence traceability.</p>
+          <pre className="diagram">{`Inputs
+  (logs / screenshot / audio)
+        |
+        v
+   AI pipeline
+ (triage + extract + generate)
+        |
+        v
+  Evidence tools
+ (NVD / GitHub / status pages)
+        |
+        v
+    DB + pgvector
+        |
+        v
+    UI outputs
+ (updates / actions / similar incidents)`}</pre>
+        </section>
       </main>
+
+      <footer className="container landing-footer">
+        <div className="footer-links">
+          <Link href="/incidents">/incidents</Link>
+          <Link href="/incidents/new">/incidents/new</Link>
+          <Link href="/architecture">/architecture</Link>
+        </div>
+        <p>Hackathon build - portfolio demo</p>
+      </footer>
     </div>
   );
 }
